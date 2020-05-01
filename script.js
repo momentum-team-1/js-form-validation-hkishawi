@@ -15,82 +15,164 @@
 
 //TRIAL 2  not exactly sure why this one doesn't work. Pretty ID to class example...
 let form = document.querySelector("#parking-form")
-let formIsValid //<<why have this here?
-
+ 
 form.addEventListener('submit',function(event) {
+    console.log('THIS IS RUNNING')
     event.preventDefault(); 
-    remove.ErrorMessage();
-    formIsValid = true
+    validateName();
+    validateCar();
+    validateStart();
+    validateDays();
+    validateCredit();
+    validateCvv();
+    validateExpiry();
 })
 
 function validateName () {
-    let nameField = document.getElementbyID('#name')
+    let nameField = document.querySelector('#name')
     //grabbing name
     let nameInput = nameField.value;
-    //variable for name that is input
+    //variable for name that is input; value that was typed into "name"
     let parentEl = nameField.parentElement; 
-    //where the variable will go when the name is inputted
-
+    //parent element the variable will go when the name is inputted
     if (nameInput) {
-    //telling machine to do this if valid
-    console.log('name is valid')
-    parentEl.classList.remove('input-invalid')
-    parentEl.classList.add('input-valid')
-    } else {
+        //telling machine to do this if valid
+        console.log('name is valid')
+        parentEl.classList.remove('input-invalid')
+        //removing this node when invalid; how can name be invalid? 
+        parentEl.classList.add('input-valid')
+}       else {
         console.log('name is NOT valid')
         //else not valid then invalid 
         parentEl.classList.remove('input-valid')
-        parentEl.classList.add('input-invalid')
-        formIsValid=false
+        parentEl.classList.add('input-invalid')  
         }
 };
 
-function validateCarYear() {
-    let carYear = document.getElementbyID("#car-year")
-    let year = carYear.value
-    let parentEl = carYear.parentElement
-
-    if (year) {
-        console.log('year is valid')
+function validateCar () {
+    let carField = document.querySelector("#car-field")
+    let carInput = carField.value
+    let parentEl = carField.parentElement;
+    if (carInput) {
+        console.log("Car year is valid")
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
-    } else {
-        console.log('year is NOT valid')
+    }   else {
+        console.log('Car year is NOT valid')
         parentEl.classList.remove('input-valid')
-        parentEl.classList.add('year is NOT valid')
-        formIsValid = false
+        parentEl.classList.add('input-invalid')
     }
 };
 
-function validateCarMake() {
-    let carMake = document.getElementbyID ("#car-make")
-    let make = carMake.value
-    let parentEl = carMake.parentElement
-
-    if (make) {
-        console.log('make is valid')
+function validateStart () {
+    let startField = document.querySelector('#start-date')
+    let startInput = startField.value;
+    let parentEl = startField.parentElement;
+    if (startInput) {
+        console.log('start date is valid')
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
-    } else {
-        console.log('year is NOT valid')
+}       else {
+        console.log('start date is NOT valid')
         parentEl.classList.remove('input-valid')
-        parentEl.classList.add('year is NOT valid')
-        formIsValid = false
+        parentEl.classList.add('input-invalid')
     }
 };
 
-function showError() {
-    if (name.validity.valueMissing){
-        nameError.textContent = "enter your name";
+
+function validateDays () {
+    let daysField = document.querySelector('#days')
+    let daysInput = daysField.value;
+    let parentEl = daysField.parentElement;
+    if (daysInput) {
+        console.log('days is valid')
+        parentEl.classList.remove('input-invalid')
+        parentEl.classList.add('input-valid')
+    }   else {
+            console.log('days NOT valid')
+            parentEl.classList.remove('input-valid')
+            parentEl.classList.add('input-invalid')
+        }
+};   
+
+function validateCredit () {
+    let creditField = document.querySelector('#credit-card')
+    let creditInput = creditField.value;
+    let parentEl = creditField.parentElement;
+    if (creditInput) {
+        console.log('credit card is valid')
+        parentEl.classList.remove('input-invalid')
+        parentEl.classList.add('input-valid')
+    }   else {
+            console.log('credit card is NOT valid')
+            parentEl.classList.remove('input-valid')
+            parentEl.classList.add('input-invalid')
+        }
+}; 
+
+function validateCvv () {
+    let cvvField = document.querySelector('#cvv')
+    let cvvInput = cvvField.value;
+    let parentEl = cvvField.parentElement;
+    if (cvvInput) {
+        console.log("CVV is valid")
+        parentEl.classList.remove("input-invalid")
+        parentEl.classList.add('input-valid')
+    } else {
+        console.log("CVV is NOT valid")
+        parentEl.classList.remove('input-valid')
+        parentEl.classList.add('input-invalid')
     }
-    if (year.validity.valueMissing){
-        yearError.textContent = "enter car year";
-    }   
-    if (make.validity.valueMissing){
-        makeError.textContent = "enter car make";
-    }
-    }
-}
+};
+
+function validateExpiry () {
+    let expiryField = document.querySelector('#expiration')
+    let expiryInput = expiryField.value;
+    let parentEl = expiryField.parentElement;
+    if (expiryInput) {
+        console.log('Expiration is valid')
+        parentEl.classList.remove('input-invalid')
+        parentEl.classlist.add("input-valid")
+    } else { 
+        console.log("Expiration is NOT valid")
+        parentEl.classList.remove('input-valid')
+        parentEl.classList.add('input-invalid')
+    }       
+};
+// function validateCarYear() {
+//     let carYear = document.getElementbyID("#car-year")
+//     let year = carYear.value
+//     let parentEl = carYear.parentElement
+
+//     if (year) {
+//         console.log('year is valid')
+//         parentEl.classList.remove('input-invalid')
+//         parentEl.classList.add('input-valid')
+//     } else {
+//         console.log('year is NOT valid')
+//         parentEl.classList.remove('input-valid')
+//         parentEl.classList.add('year is NOT valid')
+//     }
+// };
+
+// function validateCarMake() {
+//     let carMake = document.getElementbyID ("#car-make")
+//     let make = carMake.value
+//     let parentEl = carMake.parentElement
+
+//     if (make) {
+//         console.log('make is valid')
+//         parentEl.classList.remove('input-invalid')
+//         parentEl.classList.add('input-valid')
+//     } else {
+//         console.log('year is NOT valid')
+//         parentEl.classList.remove('input-valid')
+//         parentEl.classList.add('year is NOT valid')
+//         formIsValid = false
+//     }
+// };
+
+ 
 
 //TRIAL 3 
 // const form = document.getElementById('parking-form')[0];
