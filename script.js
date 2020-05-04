@@ -1,21 +1,42 @@
-// console.log('Add validation!');
-
-//You will write JavaScript to validate this form. When the "Make Reservation" button is clicked, you should check the values of each field and make sure they are valid. If not, you have to visually alert the user to that fact.
-
-//TRIAL 1
-// const form = document.getElementById('#parking-form')
-// const name = document.getElementById('#name')
-// form.addEventListener('submit', function(){
-    //check for text; validating if this is blank 
-    //are these letters?
-    //cc: are there numbers?? if there are numbers
-// });
-// while ((error= error.nextS))
-// consolelog("Add your name")
-
-//TRIAL 2  not exactly sure why this one doesn't work. Pretty ID to class example...
-let form = document.querySelector("#parking-form")
+console.log('Add validation!');
  
+let form = document.querySelector("#parking-form")
+let formisValid //why are we setting this?
+var inputtxt = ""
+
+//     var letters = /^[A-Za-z]+$/;
+//     if (inputtxt.value.match(letters))
+// {   console.log("name accepted")
+//     return true; 
+// }   else 
+// {
+//     alert("Letters only!");
+//     return false; 
+// }
+// }
+// function allNumeric (inputTxt) {
+//     var numbers = /^[0-9]+$/; //why do numbers look like this?
+//     if(inputTxt.value.match(numbers))
+//     {
+//         alert('numbers accepted')
+//         document.form1.text1.focus();
+//         return true; 
+//         }
+//         else
+//         {
+//         alert('please input numeric characters only');
+//         return false;
+//         }
+//     }
+
+
+
+ 
+
+// removeErrorMessage()
+// formIsValid = true
+
+
 form.addEventListener('submit',function(event) {
     console.log('THIS IS RUNNING')
     event.preventDefault(); 
@@ -28,6 +49,43 @@ form.addEventListener('submit',function(event) {
     validateExpiry();
 })
 
+// function removeErrorMessage () {
+//     if (formIsValid) {
+//         let errorDiv = document.querySelector('#error-msg')
+//         errorDiv.innerHTML=''
+//     }
+// }
+// function errormsg() { //<<from Alyshia's
+//     let errordiv = document.createElement('div')
+//     //we are creating error div by using createElement property; div will be placed in response to invalid input
+//     let errormsg = document.createTextNode('This field is required')
+//     //errormsg variable is created and defined for text node; text us produced using createTextNode property
+//     errordiv.appendChild(errormsg)
+//     //takes errormsg node is applied to parent node?
+//     document.getElementById('name-field').appendChild(errordiv)
+//     //this grabs 'name-field' and applies errordiv as a child node 
+
+
+// }
+//  *****THIS ERROR FUNCTION ONE KIND OF WORKS
+// function showErrorMsg(inputData) {
+//     //if input invalid, don't print error
+//     let nameField = document.querySelector(inputData) 
+//     let parentEl = nameField.parentElement; 
+//     if (parentEl.classList != "input-invalid")
+//      {
+//     let errorDiv = document.createElement('div')
+//     let showErrorMsg = document.createTextNode("data required")
+//     errorDiv.appendChild(showErrorMsg)
+//     document.getElementById(inputData).appendChild(showErrorMsg) 
+//     }
+// }
+// function removeErrorMessage () {
+//     let errorDiv = document.querySelector('#input-field')
+//     errorDiv.innerHTML = ''
+// }
+
+
 function validateName () {
     let nameField = document.querySelector('#name')
     //grabbing name
@@ -37,18 +95,60 @@ function validateName () {
     //parent element the variable will go when the name is inputted
     if (nameInput) {
         //telling machine to do this if valid
-        console.log('name is valid')
+        console.log('name is invalid')
         parentEl.classList.remove('input-invalid')
-        //removing this node when invalid; how can name be invalid? 
+        //removing this node when invalid; how can name be valid? 
         parentEl.classList.add('input-valid')
 }       else {
         console.log('name is NOT valid')
         //else not valid then invalid 
         parentEl.classList.remove('input-valid')
         parentEl.classList.add('input-invalid')  
-        }
-};
+        // showErrorMsg('name-field')
 
+
+//        nameLabel.textcontent = "Name required!";
+        // showErrorMsg('name-field')
+    }
+};
+// function showInvalidMessage () {
+//     if (formIsInvalid) {
+//         let invalidDiv = document.querySelector('#input-invalid')
+//         let invalidMsgEl = document.createElement('div')
+//         let invalidMsgText = document.createTextNode('Invalid. Numbers only')
+//         invalidMsgEl.appendChild(invalidMsgText)
+//         document.querySelector('#name').appendChild(invalidMsgEl)
+//     }
+// }
+
+// function validateCar() {
+//     let parentEl = document.querySelector("#car-field")
+//     let yearInput = document.querySelector("#car-year")
+//     let yearInfo = yearInput.value
+//     let makeInput = document.querySelector("#car-make") 
+//     let makeInfo = makeInput.value
+//     let modelInput = document.querySelector("#car-model")
+//     let modelInfo = modelInput.value
+
+//     document.getElementsByTagName("label")[0].setAttribute("id", "car-label"); 
+// //0 reps the collection of nodes in "car-label"
+//     let carLabel = document.querySelector("#car-label")
+
+//     y = document.getElementById("car-year").value
+
+//     if (isNaN(y) || y < 1900 || y > 2020 || makeInfo === "" || modelInfo === "") {
+//         console.log("car field NOT valid")
+//         parentEl.classList.remove("input-valid")
+//         parentEl.classList.add("input-invalid")
+//         carLabel.textContent = "Car information not valid"
+//         formisValid = false
+//     } else if (yearInfo !== "" && makeInfo !== "" && modelInfo !== "") {
+//         console.log("car field is valid")
+//         parentEl.classlist.remove("input-invalid")
+//         carLabel.textContent = "Car"
+//         parentEl.classList.add("input-valid")
+//     }
+//     }
 function validateCar () {
     let carField = document.querySelector("#car-field")
     let carInput = carField.value
@@ -58,11 +158,12 @@ function validateCar () {
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
     }   else {
-        console.log('Car year is NOT valid')
-        parentEl.classList.remove('input-valid')
+        console.log('Car year is valid')
+        parentEl.classList.contains('input-valid')
         parentEl.classList.add('input-invalid')
+        // showErrorMsg('car-field')
     }
-};
+}
 
 function validateStart () {
     let startField = document.querySelector('#start-date')
@@ -76,6 +177,7 @@ function validateStart () {
         console.log('start date is NOT valid')
         parentEl.classList.remove('input-valid')
         parentEl.classList.add('input-invalid')
+        // showErrorMsg('start-date-field')
     }
 };
 
@@ -84,14 +186,15 @@ function validateDays () {
     let daysField = document.querySelector('#days')
     let daysInput = daysField.value;
     let parentEl = daysField.parentElement;
-    if (daysInput) {
+    if (daysInput > 0 && daysInput < 31) {
         console.log('days is valid')
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
     }   else {
-            console.log('days NOT valid')
-            parentEl.classList.remove('input-valid')
-            parentEl.classList.add('input-invalid')
+        console.log('days NOT valid')
+        parentEl.classList.remove('input-valid')
+        parentEl.classList.add('input-invalid')
+        // showErrorMsg('days-field')
         }
 };   
 
@@ -104,24 +207,27 @@ function validateCredit () {
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
     }   else {
-            console.log('credit card is NOT valid')
-            parentEl.classList.remove('input-valid')
-            parentEl.classList.add('input-invalid')
-        }
+        console.log('credit card is NOT valid')
+        parentEl.classList.remove('input-valid')
+        parentEl.classList.add('input-invalid')
+        // showErrorMsg('credit-card-field')
+    }
 }; 
 
 function validateCvv () {
     let cvvField = document.querySelector('#cvv')
     let cvvInput = cvvField.value;
     let parentEl = cvvField.parentElement;
-    if (cvvInput) {
+    if (cvvInput.length = 3) {
         console.log("CVV is valid")
         parentEl.classList.remove("input-invalid")
         parentEl.classList.add('input-valid')
+        
     } else {
         console.log("CVV is NOT valid")
         parentEl.classList.remove('input-valid')
         parentEl.classList.add('input-invalid')
+        showErrorMsg('cvv-field')
     }
 };
 
@@ -137,6 +243,7 @@ function validateExpiry () {
         console.log("Expiration is NOT valid")
         parentEl.classList.remove('input-valid')
         parentEl.classList.add('input-invalid')
+        // showErrorMsg('expiration-field')
     }       
 };
 // function validateCarYear() {

@@ -30,7 +30,7 @@ Add the following validations:
 * Date parking must be in the future.
 * Number of days must be a number.
 * Number of days must be between 1 and 30.
-* CVV must be a three-digit number.
+* CVV must be a three-digit number. 
 
 ### Step 4
 
