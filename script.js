@@ -23,6 +23,28 @@ form.addEventListener('submit',function(event) {
     // formIsValid = true
 })
 
+function validateCardNumber(number) {
+    var regex = new RegExp("^[0-9]{16}$");
+    if (!regex.test(number))
+        return false;
+
+    return luhnCheck(number);
+}
+
+function luhnCheck(val) {
+    var sum = 0;
+    for (var i = 0; i < val.length; i++) {
+        var intVal = parseInt(val.substr(i, 1));
+        if (i % 2 == 0) {
+            intVal *= 2;
+            if (intVal > 9) {
+                intVal = 1 + (intVal % 10);
+            }
+        }
+        sum += intVal;
+    }
+    return (sum % 10) == 0;
+}
 // function removeErrorMessage () {
 //     let errorDiv = document.querySelector('#error-msg')
 //     errorDiv.innerHTML = ''
@@ -209,7 +231,7 @@ function validateCredit () {
     document.getElementsByTagName("label")[4].setAttribute("id", "credit-num");
     let creditText = document.querySelector("#credit-num")
     
-    if (creditInput && CCregex.test(creditInput)) {
+    if (creditInput && CCregex.test(creditInput) && luhnCheck(creditInput)) {
         console.log('credit card is valid')
         parentEl.classList.remove('input-invalid')
         parentEl.classList.add('input-valid')
@@ -345,3 +367,13 @@ function validateCar() {
 //             carText = "Enter car model!"
 //     }
 // }
+
+//STEP 4
+// Add the ability to show the user the total cost of their parking when they click the "Make Reservation" button. The div with id "total" should be filled with text showing the cost. This text should be removed if the form becomes invalid.
+//submit = eval($5/weekday) || eval($7/weekend) total cost of parking 
+// Would results output in Input number of days??
+//create function for both weekend and weekday?
+
+//STEP 6
+// Add expiration date for cc and start date using momentjs.com... 
+// which link to at to <script> in html?
